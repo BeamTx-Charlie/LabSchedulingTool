@@ -5,6 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Generator</title>
     <link rel="stylesheet" href="styles.css">
+    <script>
+        // Function to make an API call
+        function makeApiCall() {
+            const apiUrl = 'http://10.110.8.172:8444/protocols'; // Replace with your API endpoint
+
+            fetch(apiUrl)
+                .then(response => response.json())  // Convert the response to JSON
+                .then(data => {
+                    console.log(data);  // Process the data
+                    document.getElementById('result').innerText = JSON.stringify(data, null, 2); // Display data
+                })
+                .catch(error => console.error('Error:', error));  // Handle any errors
+        }
+
+        // Optional: Make an API call when the page loads
+        window.onload = () => {
+            makeApiCall();
+        };
+    </script>
 </head>
 <body>
     <h1>Order Generator</h1>
@@ -23,5 +42,8 @@
     <div id="response"></div>
 
     <script src="script.js"></script>
+    <h2>API Call Example</h2>
+    <button onclick="makeApiCall()">Fetch Data</button>
+    <pre id="result"></pre>
 </body>
 </html>
